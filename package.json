@@ -4,9 +4,17 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "tsc",
     "dev": "nodemon --ext ts --exec ts-node src/server.ts",
     "start": "node dist/server.js",
-    "build": "tsc"
+    "db:migrate": "prisma migrate dev --name init",
+    "db:push": "prisma db push",
+    "db:studio": "prisma studio",
+    "db:generate": "prisma generate",
+    "db:migrate:deploy": "prisma migrate deploy",
+    "db:migrate:reset": "prisma migrate reset --force",
+    "db:create": "NODE_ENV=development ts-node -r dotenv/config prisma/db-create.ts",
+    "db:reset-migrate": "prisma migrate reset --force && prisma migrate deploy"
   },
   "keywords": [],
   "author": "",
@@ -15,6 +23,7 @@
   "dependencies": {
     "@prisma/client": "^6.5.0",
     "bcrypt": "^5.1.1",
+    "child_process": "^1.0.2",
     "cookie-parser": "^1.4.7",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",

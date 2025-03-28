@@ -4,6 +4,7 @@ import prisma from '../prisma';
 
 class UserController {
     static async createUser(req: any, res: any) {
+        console.log(1111)
         const { name, email, password } = req.body;
         try {
             const hashedPassword = await bcrypt.hash(password, 10);
@@ -21,6 +22,7 @@ class UserController {
                 user,
             });
         } catch (error) {
+            console.log(333333, error)
             res.status(500).json({ error: 'Error creating user' });
         }
     }
